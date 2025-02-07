@@ -9,9 +9,7 @@ env:
 
 jobs:
   build-and-push-image:
-    # TODO: uncomment it when active development is over
-    # Build image only if PR is approved to avoid having too many random images
-    # if: github.event.review.state == 'approved'
+    if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     permissions:
       contents: read
