@@ -1,8 +1,8 @@
 #
-# Simple tool to watch directory for new files and upload them to S3
+# Dockerfile
 #
 
-FROM golang:1.23.6 AS test
+FROM golang:1.26 AS test
 WORKDIR /build
 ENV GOPATH=/go
 ENV PATH="$PATH:$GOPATH/bin"
@@ -20,7 +20,7 @@ ENV PATH="$PATH:$GOPATH/bin"
 RUN make build
 
 # FROM gcr.io/distroless/base-debian11
-FROM alpine:3.21
+FROM alpine:3.22
 WORKDIR /
 COPY --from=build /build/output/go-app /go-app
 ENTRYPOINT ["/go-app"]
